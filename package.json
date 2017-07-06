@@ -1,0 +1,32 @@
+{
+  "name": "geocode-csv-file",
+  "version": "0.1.0",
+  "description": "",
+  "scripts": {
+    "start-backend": "babel-node src/server --trace-warnings",
+    "dev-backend": "nodemon -w src -x babel-node -- --trace-warnings src/server",
+    "test": "mocha --compilers js:babel-register -r babel-polyfill --abort-on-uncaught-exception --recursive --trace-warnings test"
+  },
+  "author": "John Owen",
+  "license": "MIT",
+  "dependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.25.0",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-stage-2": "^6.24.1",
+    "babel-register": "^6.24.1",
+    "body-parser": "^1.17.2",
+    "chai": "^4.0.2",
+    "chai-roughly": "^1.0.0",
+    "chai-uuid": "^1.0.6",
+    "delay": "^2.0.0",
+    "express": "^4.15.3",
+    "got": "^7.1.0",
+    "mocha": "^3.4.2",
+    "morgan": "^1.8.2",
+    "nodemon": "^1.11.0",
+    "throttle-debounce": "^1.0.1",
+    "uuid": "^3.1.0"
+  }
+}
