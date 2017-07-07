@@ -96,7 +96,7 @@ class App extends React.Component {
             <thead>
               <tr>
                 <th>Name</th>
-                <th>Street address</th>
+                <th className="hidden-md-down">Street address</th>
                 <th>Latitude</th>
                 <th>Longitude</th>
               </tr>
@@ -105,7 +105,7 @@ class App extends React.Component {
               {this.state.outputRows.map((outputRow, i) => (
                 <tr key={i}>
                   <td>{outputRow.name}</td>
-                  <td>{outputRow.address}</td>
+                  <td className="hidden-md-down">{outputRow.address}</td>
                   <td>{outputRow.lat}</td>
                   <td>{outputRow.lng}</td>
                 </tr>
