@@ -5,9 +5,11 @@ import chai from 'chai';
 import {expect} from 'chai';
 import chaiRoughly from 'chai-roughly';
 import chaiUUID from 'chai-uuid';
+import chaiString from 'chai-string';
 
 chai.use(chaiRoughly);
 chai.use(chaiUUID);
+chai.use(chaiString);
 
 let floatTolerance = 0.000001;
 
@@ -189,5 +191,19 @@ describe('server', function() {
         expect(error.statusCode).to.equal(400);
       }
     });
+  });
+
+  it('GET / should return a HTML page', async function() {
+    let get = await got('localhost:3001');
+    expect(get.statusCode).to.equal(200);
+    expect(get.headers['content-type']).to.match(/^text\/html/);
+    expect(get.body).to.startWith('<!doctype html5>');
+  });
+
+  it('GET /bundle.js', async function() {
+    let get = await got('localhost:3001/bundle.js');
+    expect(get.statusCode).to.equal(200);
+    expect(get.headers['content-type']).to.match(/^application\/javascript/);
+    expect(get.body).to.include('var'); // If this passes it's probably valid JS
   });
 });

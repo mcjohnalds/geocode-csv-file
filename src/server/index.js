@@ -1,12 +1,19 @@
 import 'babel-polyfill';
 import express from 'express';
 import morgan from 'morgan';
+import path from 'path';
 import api from './api';
 
 function server() {
   let app = express();
-  app.use(morgan('dev'));
+  if (process.env.NODE_ENV !== 'test') {
+    app.use(morgan('dev'));
+  }
   app.use('/v1', api());
+  app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname + '/../../index.html'))
+  });
+  app.use('/', express.static('./build'));
   return app;
 }
 
