@@ -31,7 +31,7 @@ class App extends React.Component {
         className="container"
       >
         <div className="row">
-          <label className="col mx-2 custom-file">
+          <label className="col m-2 custom-file">
             <input
               onChange={this.handleFileInputChange}
               type="file"
@@ -42,7 +42,7 @@ class App extends React.Component {
           {this.state.inputRows ? (
             <button
               onClick={this.handleUploadButtonClick}
-              className="col btn btn-primary mx-2"
+              className="col btn btn-primary m-2"
               disabled={this.state.outputRows}
               type="submit"
             >
@@ -59,7 +59,7 @@ class App extends React.Component {
           {this.state.inputRows ? (
             <button
               onClick={this.handleDownloadButtonClick}
-              className="col btn btn-primary mx-2"
+              className="col btn btn-primary m-2"
               disabled={!this.state.outputRows}
             >
               Download
