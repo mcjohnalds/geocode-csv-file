@@ -28,44 +28,44 @@ class App extends React.Component {
       </p>
       <form
         onSubmit={e => e.preventDefault()}
-        className="d-flex justify-content-between"
+        className="container"
       >
-        <label className="custom-file">
-          <input
-            onChange={this.handleFileInputChange}
-            type="file"
-            className="custom-file-input"
-          />
-          <span className="custom-file-control" />
-        </label>
-        {this.state.inputRows ? (
-          <button
-            onClick={this.handleUploadButtonClick}
-            className="btn btn-primary"
-            style={{minWidth: '20%'}}
-            disabled={this.state.outputRows}
-            type="submit"
-          >
-            {this.state.waitingForOutput ? (
-              <span>
-                <span className="fa fa-circle-o-notch fa-spin" />
-                &nbsp;
-              </span>
-            ) : (
-              this.state.outputRows ? 'Uploaded' : 'Upload'
-            )}
-          </button>
-        ) : null}
-        {this.state.inputRows ? (
-          <button
-            onClick={this.handleDownloadButtonClick}
-            className="btn btn-primary"
-            style={{minWidth: '20%'}}
-            disabled={!this.state.outputRows}
-          >
-            Download
-          </button>
-        ) : null}
+        <div className="row">
+          <label className="col mx-2 custom-file">
+            <input
+              onChange={this.handleFileInputChange}
+              type="file"
+              className="custom-file-input"
+            />
+            <span className="custom-file-control" />
+          </label>
+          {this.state.inputRows ? (
+            <button
+              onClick={this.handleUploadButtonClick}
+              className="col btn btn-primary mx-2"
+              disabled={this.state.outputRows}
+              type="submit"
+            >
+              {this.state.waitingForOutput ? (
+                <span>
+                  <span className="fa fa-circle-o-notch fa-spin" />
+                  &nbsp;
+                </span>
+              ) : (
+                this.state.outputRows ? 'Uploaded' : 'Upload'
+              )}
+            </button>
+          ) : <div className="col">&nbsp;</div>}
+          {this.state.inputRows ? (
+            <button
+              onClick={this.handleDownloadButtonClick}
+              className="col btn btn-primary mx-2"
+              disabled={!this.state.outputRows}
+            >
+              Download
+            </button>
+          ) : <div className="col">&nbsp;</div>}
+        </div>
       </form>
       <hr />
       {this.state.inputRows && !this.state.outputRows ? (
