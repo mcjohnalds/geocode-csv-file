@@ -3,11 +3,13 @@ import express from 'express';
 import morgan from 'morgan';
 import path from 'path';
 import compression from 'compression';
+import helmet from 'helmet';
 import api from './api';
 
 function server() {
   let app = express();
-  app.use(compression())
+  app.use(compression());
+  app.use(helmet());
   if (process.env.NODE_ENV !== 'test') {
     app.use(morgan('dev'));
   }
