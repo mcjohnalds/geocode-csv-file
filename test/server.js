@@ -1,3 +1,4 @@
+// Note Sometimes tests will fail due to network delay.
 import server from '../src/server';
 import got from 'got';
 import delay from 'delay';
@@ -200,7 +201,7 @@ describe('server', function() {
     expect(get.body).to.startWith('<!doctype html5>');
   });
 
-  it('GET /bundle.js', async function() {
+  it('GET /bundle.js should return a JS file', async function() {
     let get = await got('localhost:3001/bundle.js');
     expect(get.statusCode).to.equal(200);
     expect(get.headers['content-type']).to.match(/^application\/javascript/);
