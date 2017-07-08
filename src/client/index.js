@@ -7,6 +7,7 @@ import delay from 'delay';
 import download from 'in-browser-download';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'font-awesome/css/font-awesome.css';
+import logo from './logo.svg';
 
 class App extends React.Component {
   state = {
@@ -22,7 +23,15 @@ class App extends React.Component {
 
   render = () => (
     <div className="container">
-      <h1>Geocode a CSV file</h1>
+      <div>
+        <h1>
+          <img
+            src={logo}
+            style={{height: '3.5rem', margin: '1rem 1rem'}}
+          />
+          Geocode a CSV file
+        </h1>
+      </div>
       <p>
         This tool adds latitude and longitude columns to a CSV that already has
         name and street address columns.

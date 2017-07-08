@@ -11,7 +11,10 @@ function server() {
   }
   app.use('/v1', api());
   app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname + '/../../index.html'))
+    res.sendFile(path.join(__dirname, '../../index.html'));
+  });
+  app.get('/favicon.ico', (req, res) => {
+    res.sendFile(path.join(__dirname, '../../favicon.ico'));
   });
   app.use('/', express.static('./build'));
   return app;
