@@ -53,9 +53,10 @@ class App extends React.Component {
           {this.state.inputRows ? (
             <button
               onClick={this.handleUploadButtonClick}
-              className="col btn btn-primary m-2"
               disabled={this.state.outputRows}
               type="submit"
+              style={{cursor: this.state.outputRows ? 'default' : 'pointer'}}
+              className="col btn btn-primary m-2"
             >
               {this.state.waitingForOutput ? (
                 <span>
@@ -70,8 +71,9 @@ class App extends React.Component {
           {this.state.inputRows ? (
             <button
               onClick={this.handleDownloadButtonClick}
-              className="col btn btn-primary m-2"
               disabled={!this.state.outputRows}
+              style={{cursor: !this.state.outputRows ? 'default' : 'pointer'}}
+              className="col btn btn-primary m-2"
             >
               Download
             </button>
