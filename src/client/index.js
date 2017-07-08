@@ -10,12 +10,13 @@ import 'font-awesome/css/font-awesome.css';
 
 class App extends React.Component {
   state = {
-    // null or json array
+    // JSON array of {name, address} objects
     inputRows: null,
+    // Name of input file
     inputFileName: null,
-    isUploadingInput: false,
-    hasUploadedInput: false,
+    // Are we waiting for a response from the server
     waitingForOutput: false,
+    // JSON array of {name, address, lat, lng} objects
     outputRows: null
   }
 
@@ -36,6 +37,7 @@ class App extends React.Component {
               onChange={this.handleFileInputChange}
               type="file"
               className="custom-file-input"
+              disabled={this.state.waitingForOutput}
             />
             <span className="custom-file-control" />
           </label>
@@ -91,7 +93,7 @@ class App extends React.Component {
       ) : null}
       {this.state.outputRows ? (
         <div>
-          <h2>Result</h2>
+          <h2>Results</h2>
           <table className="table">
             <thead>
               <tr>
@@ -119,44 +121,38 @@ class App extends React.Component {
 
   handleFileInputChange = event => {
     let file = event.target.files[0];
-    this.setState({
-      inputFilePath: event.target.value
-    });
-    Papa.parse(file, {
-      complete: ({data, errors}) => {
-        let inputRows = data
-          .filter(array => array.length === 2)
-          .map(([name, address]) => ({name, address}));
-        this.setState({
-          inputRows,
-          isUploadingInput: false,
-          hasUploadedInput: false,
-          waitingForOutput: false,
-          outputRows: null
-        });
-      }
-    });
+    if (file) {
+      this.setState({inputFileName: file.name});
+      Papa.parse(file, {
+        complete: ({data, errors}) => {
+          let inputRows = data
+            .filter(array => array.length === 2)
+            .map(([name, address]) => ({name, address}));
+          this.setState({
+            inputRows,
+            waitingForOutput: false,
+            outputRows: null
+          });
+        }
+      });
+    }
   }
 
   handleUploadButtonClick = async () => {
+    // Upload rows
     if (this.waitingForOutput || this.outputRows) {
       return;
     }
-    this.setState({
-      isUploadingInput: true,
-      waitingForOutput: true
-    });
+    this.setState({waitingForOutput: true});
     let post = await axios.post('/v1/jobs', {rows: this.state.inputRows});
+    // Wait until the server finishes processing
     let jobID = post.data.id;
-    this.setState({
-      isUploadingInput: false,
-      hasUploadedInput: true,
-    });
     let get;
     do {
       get = await axios.get(`/v1/jobs/${jobID}`);
       await delay(3000);
     } while (get.status === 202);
+    // Display results
     this.setState({
       outputRows: get.data.rows,
       waitingForOutput: false
@@ -164,9 +160,20 @@ class App extends React.Component {
   }
 
   handleDownloadButtonClick = async () => {
-    let rows = this.state.outputRows.map(({name, address}) => [name, address]);
+    let rows = this.state.outputRows.map(
+      ({name, address, lat, lng}) => [name, address, lat, lng]
+    );
     let csv = Papa.unparse(rows);
-    download(csv, 'geocoded.csv', 'text/csv');
+    download(csv, this.getDownloadFileName(), 'text/csv');
+  }
+
+  // Make up a nice name for the file we're going to download
+  getDownloadFileName = () => {
+    if (this.state.inputFileName.endsWith('.csv')) {
+      return this.state.inputFileName.slice(0, -4) + '-geocoded.csv';
+    } else {
+      return this.state.inputFileName + '-geocoded.csv';
+    }
   }
 }
 
