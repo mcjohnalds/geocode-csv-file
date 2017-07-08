@@ -36,6 +36,15 @@ function api() {
     }
   });
   router.use((req, res) => res.sendStatus(404));
+  router.use((error, req, res, next) => {
+    if (error instanceof SyntaxError) {
+      // Probably a body-parser error. There's no other way to check.
+      res.status(400).json({});
+    } else {
+      console.error(error);
+      res.sendStatus(500);
+    }
+  });
   return router;
 }
 

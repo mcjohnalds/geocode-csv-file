@@ -180,7 +180,20 @@ describe('server', function() {
       }
     });
 
-    it('POST should 400 on invalid input', async function() {
+    it('POST should 400 on invalid JSON', async function() {
+      try {
+        await got('localhost:3001/v1/jobs', {
+          method: 'POST',
+          headers: {'content-type': 'application/json'},
+          body: '{rows: []'
+        });
+        chai.fail();
+      } catch (error) {
+        expect(error.statusCode).to.equal(400);
+      }
+    });
+
+    it('POST should 400 on improperly structured input', async function() {
       try {
         await got('localhost:3001/v1/jobs', {
           method: 'POST',
