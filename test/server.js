@@ -211,7 +211,7 @@ describe('server', function() {
     let get = await got('localhost:3001');
     expect(get.statusCode).to.equal(200);
     expect(get.headers['content-type']).to.match(/^text\/html/);
-    expect(get.body).to.startWith('<!doctype html5>');
+    expect(get.body).to.startWith('<!DOCTYPE html>');
   });
 
   it('GET /bundle.js should return a JS file', async function() {
