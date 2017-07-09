@@ -1,6 +1,16 @@
+// Button that can be clicked, disabled, or be made to show an animated spinner.
 import React from 'react';
 
-let Button = ({loading, children, className = '', onClick, disabled}) => (
+let Button = ({
+  // Setting loading to true makes the button show an animated spinner
+  loading,
+  children,
+  className = '',
+  // onClick is the standard button onClick property
+  onClick,
+  // Setting disabled to true makes the button look and act unclickable
+  disabled
+}) => (
   <button
     onClick={onClick}
     disabled={disabled}

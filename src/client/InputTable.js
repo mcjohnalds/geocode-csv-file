@@ -1,3 +1,4 @@
+// Component to display user input rows
 import React from 'react';
 
 let InputTable = ({inputRows}) => (

@@ -1,12 +1,15 @@
+// REST api middleware.
 import express from 'express';
 import bodyParser from 'body-parser';
 import JobStore from './JobStore';
 
 function api() {
+  // Are the user inputed rows correct?
   function areInputRowsValid(inputRows) {
     return Array.isArray(inputRows) && inputRows.every(isInputRowValid);
   }
 
+  // Is a user inputed row correct?
   function isInputRowValid(inputRow) {
     return Object.keys(inputRow).length === 2
       && typeof inputRow.name === 'string'

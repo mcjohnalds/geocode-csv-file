@@ -1,3 +1,4 @@
+// Page title and logo component
 import React from 'react';
 import logo from './logo.svg';
 

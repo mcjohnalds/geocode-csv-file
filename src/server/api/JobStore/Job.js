@@ -1,8 +1,15 @@
+// A Job takes some input rows and geocodes them in the background.
 import got from 'got';
 import delay from 'delay';
 import googleAPIKey from './googleAPIKey';
 
 class Job {
+  // Takes an array of objects that each look like
+  //
+  //   {name: 'Some place', address: '123 Fake St'}
+  //
+  // and starts geocoding them. Use isFinished to check when geocoding is
+  // finished and getResult to get the geocoded rows.
   constructor(inputRows) {
     this._finished = false;
     this._result = null;
@@ -25,14 +32,32 @@ class Job {
     });
   }
 
+  // Have all the input rows been geocoded?
   isFinished() {
     return this._finished;
   }
 
+  // Get the geocoded input rows. Returns an array containing objects that look
+  // like
+  //
+  //   {name: 'Some place', address: '123 Fake St', lat: 12.345, lng: 6.789}
   getResult() {
     return this._result;
   }
 
+  // Takes an object that looks like
+  //
+  //   {name: 'Some place', address: '123 Fake St'}
+  //
+  // and resolves to a row that looks like either
+  //
+  //   {name: 'Some place', address: '123 Fake St', lat: 12.345, lng: 6.789}
+  //
+  // on success or
+  //
+  //   {name: 'Some place', address: '123 Fake St', lat: null, lng: null}
+  //
+  // on failure.
   async _processRow(inputRow) {
     let res = await got('https://maps.googleapis.com/maps/api/geocode/json', {
       method: 'GET',

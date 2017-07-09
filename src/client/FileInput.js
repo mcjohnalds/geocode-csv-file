@@ -1,3 +1,4 @@
+// Component that lets the user choose a file when clicked.
 import React from 'react';
 
 class FileInput extends React.Component {

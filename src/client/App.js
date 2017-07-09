@@ -1,3 +1,4 @@
+// Main App component
 import React from 'react';
 import Papa from 'papaparse';
 import axios from 'axios';

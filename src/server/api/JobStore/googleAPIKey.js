@@ -1,3 +1,4 @@
+// Read the google API key file.
 import fs from 'fs';
 
 let googleAPIKey;
@@ -8,3 +9,4 @@ try {
   console.error('Please put your API key into google-api-key and try again.');
   process.exit(1);
 }
+export default googleAPIKey;

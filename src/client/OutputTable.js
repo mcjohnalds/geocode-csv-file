@@ -1,3 +1,4 @@
+// Component to display geocoded rows
 import React from 'react';
 
 let OutputTable = ({outputRows}) => (

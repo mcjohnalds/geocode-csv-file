@@ -1,3 +1,4 @@
+// The express HTTP server.
 import 'babel-polyfill';
 import express from 'express';
 import morgan from 'morgan';
@@ -6,6 +7,8 @@ import compression from 'compression';
 import helmet from 'helmet';
 import api from './api';
 
+// Create and return the HTTP server. Start the server by calling .listen() on
+// the return value of this function.
 function server() {
   let app = express();
   app.use(compression());
