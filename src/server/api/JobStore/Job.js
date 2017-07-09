@@ -9,9 +9,13 @@ class Job {
     // Delay results when necessary so processRow is called less than 50 times
     // per second in order to not go over Google's API limit
     this._processRowThrottled = throttle(1000 / 50, this._processRow)
-    this._processInputRows(inputRows).then(outputRows => {
-      this._result = outputRows;
+    // Run this._processRow on every inputRow in parallel
+    let promises = inputRows.map(
+      inputRow => this._processRow(inputRow)
+    );
+    Promise.all(promises).then(outputRows => {
       this._finished = true;
+      this._result = outputRows;
     });
   }
 
@@ -21,14 +25,6 @@ class Job {
 
   getResult() {
     return this._result;
-  }
-
-  async _processInputRows(inputRows) {
-    let outputRows = [];
-    for (let inputRow of inputRows) {
-      outputRows.push(await this._processRow(inputRow));
-    }
-    return outputRows;
   }
 
   async _processRow(inputRow) {
@@ -41,7 +37,7 @@ class Job {
       }
     });
     if (res.body.results.length === 0) {
-      throw Error('Row failed');
+      console.error(`Failed to process row ${inputRow.address}`);
       return {
         name: inputRow.name,
         address: inputRow.address,
