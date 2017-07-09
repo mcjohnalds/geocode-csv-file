@@ -104,7 +104,7 @@ class App extends React.Component {
     let get;
     do {
       get = await axios.get(`/v1/jobs/${jobID}`);
-      await delay(3000);
+      await delay(1000);
     } while (get.status === 202);
     // Display results
     this.setState({
