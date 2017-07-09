@@ -11,7 +11,9 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        exclude: /node_modules/,
+        exclude: (
+          process.env.NODE_ENV === 'production' ? undefined : /node_modules/
+        ),
         use: {
           loader: 'babel-loader',
           options: {
