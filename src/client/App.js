@@ -103,8 +103,8 @@ class App extends React.Component {
     let jobID = post.data.id;
     let get;
     do {
-      get = await axios.get(`/v1/jobs/${jobID}`);
       await delay(1000);
+      get = await axios.get(`/v1/jobs/${jobID}`);
     } while (get.status === 202);
     // Display results
     this.setState({
