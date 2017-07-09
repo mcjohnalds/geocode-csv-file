@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "",
   "scripts": {
+    "start": "npm run build-frontend && npm run start-backend",
     "build-frontend": "NODE_ENV=production webpack",
     "dev-backend": "nodemon -w src -x babel-node -- --trace-warnings src/server",
     "dev-frontend": "nodemon -w webpack.config.js -x webpack -- -w",

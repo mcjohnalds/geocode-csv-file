@@ -127,5 +127,4 @@ Content-Type: application/json
  6. `echo $API_KEY > google-api-key`. Replace `$API_KEY` with your Google API
     key.
  7. `npm install`
- 8. `npm run build-frontend`
- 9. `npm run start-backend`
+ 8. `npm start`
