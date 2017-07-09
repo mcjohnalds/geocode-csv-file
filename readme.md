@@ -125,7 +125,7 @@ Content-Type: application/json
  4. Enable the Google Maps Geocoding API.
  5. Create an API key in the Credentials menu.
  6. `echo $API_KEY > google-api-key`. Replace `$API_KEY` with your Google API
-    key
+    key.
  7. `npm install`.
  8. `npm run build-frontend`.
  9. `npm run start-backend`.
