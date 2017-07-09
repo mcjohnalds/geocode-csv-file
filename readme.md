@@ -1,7 +1,7 @@
 # Geocode a CSV file
 
-Sample project to demonstrate a REST api with a frontend. The app takes a CSV
-file that looks like
+Sample project to demonstrate a REST api with a frontend that integrates with a
+Google API. The app takes a CSV file that looks like
 
 | Name               | Address                                     |
 |--------------------|---------------------------------------------|
