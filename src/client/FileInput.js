@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-class FileInput extends React.Component {
+class FileInput extends React.PureComponent {
   static propTypes = {
     // Standard onChange handler for an input[type=file]
     onChange: PropTypes.func,
