@@ -30,10 +30,7 @@ class App extends React.Component {
         This tool adds latitude and longitude columns to a CSV that already has
         name and street address columns.
       </p>
-      <form
-        onSubmit={e => e.preventDefault()}
-        className="container"
-      >
+      <div className="container">
         <div className="row">
           <div className="col-12 mb-2 col-md-6 mb-md-0">
             <FileInput
@@ -65,7 +62,7 @@ class App extends React.Component {
             ) : ' '}
           </div>
         </div>
-      </form>
+      </div>
       <hr />
       {this.state.inputRows && !this.state.outputRows ? (
         <InputTable inputRows={this.state.inputRows} />
