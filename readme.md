@@ -26,7 +26,7 @@ uploading the `example-input.csv` file included in this repo.
 
 ## REST API
 
-### `POST /v1/job`
+### `POST /v1/jobs`
 
 Create a running job given an array of names and addresses. Returns a job ID.
 
@@ -58,7 +58,7 @@ Content-Type: application/json
 {"id": "3b786c00-6492-11e7-8db3-c520543c7b61"}
 ```
 
-### `GET /v1/job`
+### `GET /v1/jobs`
 
 Returns the status of a job if it's still processing, or the geocoded data if
 it's finished.
