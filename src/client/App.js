@@ -24,7 +24,7 @@ class App extends React.Component {
     outputRows: null
   }
 
-  render = () => (
+  render = () => window.location.pathname === '/' ? (
     <div className="container">
       <Title />
       <p>
@@ -71,6 +71,11 @@ class App extends React.Component {
       {this.state.outputRows ? (
         <OutputTable outputRows={this.state.outputRows} />
       ) : null}
+    </div>
+  ) : (
+    <div className="container">
+      <Title />
+      <b>Page not found.</b>
     </div>
   )
 

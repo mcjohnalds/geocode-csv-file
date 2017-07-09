@@ -20,13 +20,20 @@ function server() {
     app.use(morgan('common'));
   }
   app.use('/v1', api());
-  app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../../index.html'));
-  });
+  let indexPage = path.join(__dirname, '../../index.html');
+  app.get('/', (req, res) => res.sendFile(indexPage));
   app.get('/favicon.ico', (req, res) => {
     res.sendFile(path.join(__dirname, '../../favicon.ico'));
   });
   app.use('/', express.static('./build'));
+  app.use((req, res) => {
+    res.status(404)
+    res.sendFile(indexPage);
+  });
+  app.use((error, req, res, next) => {
+    console.error(error);
+    res.sendStatus(500);
+  });
   return app;
 }
 
