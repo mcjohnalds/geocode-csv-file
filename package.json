@@ -3,9 +3,10 @@
   "version": "0.1.0",
   "description": "",
   "scripts": {
+    "build-frontend": "NODE_ENV=production webpack",
     "dev-backend": "nodemon -w src -x babel-node -- --trace-warnings src/server",
     "dev-frontend": "nodemon -w webpack.config.js -x webpack -- -w",
-    "start-backend": "babel-node src/server --trace-warnings",
+    "start-backend": "NODE_ENV=production babel-node src/server --trace-warnings",
     "test": "NODE_ENV=test mocha --compilers js:babel-register -r babel-polyfill --abort-on-uncaught-exception --recursive --trace-warnings test"
   },
   "author": "John Owen",
