@@ -1,18 +1,24 @@
 import got from 'got';
+import delay from 'delay';
 import googleAPIKey from './googleAPIKey';
-import throttle from 'throttle-debounce/throttle';
 
 class Job {
   constructor(inputRows) {
     this._finished = false;
     this._result = null;
-    // Delay results when necessary so processRow is called less than 50 times
-    // per second in order to not go over Google's API limit
-    this._processRowThrottled = throttle(1000 / 50, this._processRow)
-    // Run this._processRow on every inputRow in parallel
-    let promises = inputRows.map(
-      inputRow => this._processRow(inputRow)
-    );
+    // Google places API can't be called more than 50 times per second so we
+    // call this._processRow on every inputRow as fast as possible without
+    // exceeding 50 calls per second.
+    let promises = inputRows.map(async inputRow => {
+      let startTime = Date.now();
+      let promise = this._processRow(inputRow);
+      let timeDiff = Date.now() - startTime;
+      if (timeDiff < 1000 / 50) {
+        await delay(1000 / 50 - timeDiff);
+      }
+      return promise;
+    });
+    // Set some variables when all the promises resolve
     Promise.all(promises).then(outputRows => {
       this._finished = true;
       this._result = outputRows;
