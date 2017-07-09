@@ -110,7 +110,7 @@ describe('server', function() {
       expect(post.statusCode).to.equal(200);
       expect(post.headers['content-type']).to.match(/^application\/json/);
       expect(post.body.id).to.be.a.uuid();
-      await delay(1800);
+      await delay(1000);
       let get = await got(`localhost:3001/v1/jobs/${post.body.id}`, {
         method: 'GET',
         json: true
@@ -139,7 +139,7 @@ describe('server', function() {
       expect(postB.headers['content-type']).to.match(/^application\/json/);
       expect(postB.body.id).to.be.a.uuid();
       expect(postA.body.id).to.not.equal(postB.body.id);
-      await delay(1800);
+      await delay(1000);
       let getA = await got(`localhost:3001/v1/jobs/${postA.body.id}`, {
         method: 'GET',
         json: true
@@ -167,7 +167,7 @@ describe('server', function() {
       expect(post.statusCode).to.equal(200);
       expect(post.headers['content-type']).to.match(/^application\/json/);
       expect(post.body.id).to.be.a.uuid();
-      await delay(1800);
+      await delay(1000);
       try {
         let uuid = '9a7414b0-61f5-11e7-853d-abd8a983b119';
         await got(`localhost:3001/v1/jobs/${uuid}`, {
