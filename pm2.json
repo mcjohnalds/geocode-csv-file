@@ -1,0 +1,9 @@
+{
+  "apps": [
+    {
+      "name": "geocode-csv-file",
+      "script": "npm",
+      "args": "start"
+    }
+  ]
+}
