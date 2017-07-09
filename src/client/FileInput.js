@@ -1,7 +1,15 @@
 // Component that lets the user choose a file when clicked.
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class FileInput extends React.Component {
+  static propTypes = {
+    // Standard onChange handler for an input[type=file]
+    onChange: PropTypes.func,
+    // Visually and functionally disable the component
+    disabled: PropTypes.bool
+  }
+
   render = () => {
     let {onChange, disabled} = this.props;
     return (
@@ -33,6 +41,6 @@ class FileInput extends React.Component {
       </div>
     );
   };
-};
+}
 
 export default FileInput;
