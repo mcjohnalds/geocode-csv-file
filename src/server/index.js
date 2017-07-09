@@ -16,6 +16,9 @@ function server() {
   if (process.env.NODE_ENV !== 'test') {
     app.use(morgan('dev'));
   }
+  if (process.env.NODE_ENV === 'production') {
+    app.use(morgan('common'));
+  }
   app.use('/v1', api());
   app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../../index.html'));
