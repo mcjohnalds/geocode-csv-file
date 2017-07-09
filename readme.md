@@ -118,8 +118,14 @@ Content-Type: application/json
 
 ## Install and run
 
- 1. `git clone https://github.com/mcjohnalds/geocode-csv-file.git`
- 2. `cd geocode-csv-file`
- 3. `npm install`
- 4. `npm run build-frontend`
- 5. `npm run start-backend`
+ 1. `git clone https://github.com/mcjohnalds/geocode-csv-file.git`.
+ 2. `cd geocode-csv-file`.
+ 3. Create a project in the
+    [Google API console](https://console.developers.google.com).
+ 4. Enable the Google Maps Geocoding API.
+ 5. Create an API key in the Credentials menu.
+ 6. `echo $API_KEY > google-api-key`. Replace `$API_KEY` with your Google API
+    key
+ 7. `npm install`.
+ 8. `npm run build-frontend`.
+ 9. `npm run start-backend`.
