@@ -18,16 +18,12 @@ module.exports = {
             "presets": [
               "react",
               "stage-2",
-              [
-                "env",
-                {
-                  "targets": {
-                    "browsers": "last 2 versions",
-                    "uglify": true
-                  },
-                  "useBuiltIns": true
-                }
-              ]
+              ["env", {
+                "targets": {
+                  "browsers": "last 2 versions"
+                },
+                "useBuiltIns": true
+              }]
             ],
             "plugins": ["transform-class-properties"]
           }
@@ -56,8 +52,5 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
     })
-  ].concat(process.env.NODE_ENV === 'production'
-    ? [new webpack.optimize.UglifyJsPlugin()]
-    : []
-  )
+  ]
 };
