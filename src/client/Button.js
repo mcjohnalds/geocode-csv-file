@@ -1,11 +1,12 @@
 import React from 'react';
 
-let Button = ({loading, children, className = '', ...props}) => (
+let Button = ({loading, children, className = '', onClick, disabled}) => (
   <button
+    onClick={onClick}
+    disabled={disabled}
     type="button"
-    style={{cursor: props.disabled ? 'default' : 'pointer'}}
-    className={'btn btn-primary m-2 ' + className}
-    {...props}
+    style={{cursor: disabled ? 'default' : 'pointer'}}
+    className={'btn btn-primary ' + className}
   >
     {loading ? (
       <span>

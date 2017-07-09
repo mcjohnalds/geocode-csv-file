@@ -35,29 +35,35 @@ class App extends React.Component {
         className="container"
       >
         <div className="row">
-          <FileInput
-            onChange={this.handleFileInputChange}
-            disabled={this.state.waitingForOutput}
-          />
-          {this.state.inputRows ? (
-            <Button
-              onClick={this.handleUploadButtonClick}
-              disabled={this.state.outputRows}
-              loading={this.state.waitingForOutput}
-              className="col"
-            >
-              {this.state.outputRows ? 'Uploaded' : 'Upload'}
-            </Button>
-          ) : <div className="col">&nbsp;</div>}
-          {this.state.inputRows ? (
-            <Button
-              onClick={this.handleDownloadButtonClick}
-              disabled={!this.state.outputRows}
-              className="col"
-            >
-              Download
-            </Button>
-          ) : <div className="col">&nbsp;</div>}
+          <div className="col-12 mb-2 col-md-6 mb-md-0">
+            <FileInput
+              onChange={this.handleFileInputChange}
+              disabled={this.state.waitingForOutput}
+            />
+          </div>
+          <div className="col">
+            {this.state.inputRows ? (
+              <Button
+                onClick={this.handleUploadButtonClick}
+                disabled={this.state.outputRows}
+                loading={this.state.waitingForOutput}
+                className="w-100"
+              >
+                {this.state.outputRows ? 'Uploaded' : 'Upload'}
+              </Button>
+            ) : ' '}
+          </div>
+          <div className="col">
+            {this.state.inputRows ? (
+              <Button
+                onClick={this.handleDownloadButtonClick}
+                disabled={!this.state.outputRows}
+                className="w-100"
+              >
+                Download
+              </Button>
+            ) : ' '}
+          </div>
         </div>
       </form>
       <hr />
