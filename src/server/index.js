@@ -20,10 +20,10 @@ function server() {
     app.use(morgan('common'));
   }
   app.use('/v1', api());
-  let indexPage = path.join(__dirname, '../../index.html');
+  let indexPage = path.join(__dirname, '../../public/index.html');
   app.get('/', (req, res) => res.sendFile(indexPage));
   app.get('/favicon.ico', (req, res) => {
-    res.sendFile(path.join(__dirname, '../../favicon.ico'));
+    res.sendFile(path.join(__dirname, '../../public/favicon.ico'));
   });
   app.use('/', express.static('./build'));
   app.use((req, res) => {
