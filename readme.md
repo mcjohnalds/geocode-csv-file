@@ -1,5 +1,3 @@
-# Geocode a CSV file
-
 ![Demonstration](/animation.gif)
 
 Sample project to demonstrate a REST api with a frontend that integrates with a
