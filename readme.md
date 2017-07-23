@@ -1,28 +1,9 @@
 # Geocode a CSV file
 
+![Demonstration](/animation.gif)
+
 Sample project to demonstrate a REST api with a frontend that integrates with a
-Google API. The app takes a CSV file that looks like
-
-| Name               | Address                                     |
-|--------------------|---------------------------------------------|
-| AginicX            | 135 Wickham Terrace, Spring Hill QLD 4000   |
-| Espresso Garage    | 176 Grey St, South Brisbane QLD 4101        |
-| Cafe Dockside      | 35 Ferry St, Kangaroo Point QLD 4169        |
-| Wicked Corner Cafe | 2/166 Wickham Terrace, Spring Hill QLD 4000 |
-| Coffee Iconic      | 340 George Street, Brisbane QLD 4000        |
-
-then geocodes the rows so that they become
-
-| Name               | Address                                     | Latitude    | Longitude   |
-|--------------------|---------------------------------------------|-------------|-------------|
-| AginicX            | 135 Wickham Terrace, Spring Hill QLD 4000   | -27.4643931 | 153.0254013 |
-| Espresso Garage    | 176 Grey St, South Brisbane QLD 4101        | -27.4792355 | 153.0222656 |
-| Cafe Dockside      | 35 Ferry St, Kangaroo Point QLD 4169        | -27.4721317 | 153.0367206 |
-| Wicked Corner Cafe | 2/166 Wickham Terrace, Spring Hill QLD 4000 | -27.4651285 | 153.0244078 |
-| Coffee Iconic      | 340 George Street, Brisbane QLD 4000        | -27.469296  | 153.0216909 |
-
-The app is running on an EC2 instance, available at http://52.63.124.223. Try
-uploading the `example-input.csv` file included in this repo.
+Google API.
 
 ## REST API
 
@@ -128,3 +109,4 @@ Content-Type: application/json
     key.
  7. `npm install`
  8. `npm start`
+ 9. Try uploading the `example-input.csv` file included in this repo.
